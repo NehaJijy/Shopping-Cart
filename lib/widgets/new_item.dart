@@ -32,7 +32,7 @@ class _NewItemState extends State<NewItem> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5, 
+      elevation: 0,
       child: Container(
         padding: EdgeInsets.all(10),
         child: Column(
@@ -51,9 +51,10 @@ class _NewItemState extends State<NewItem> {
             ),
             RaisedButton(
               child: Text('Add item'),
-              color: Theme.of(context).primaryColor,
+              color: const Color(0xffdd377b),
               textColor: Colors.white70,
               onPressed: submitData,
+
             )
           ],
         ),

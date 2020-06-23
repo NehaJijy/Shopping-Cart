@@ -13,36 +13,54 @@ class ItemList extends StatelessWidget {
       height: 400,
       child: ListView.builder(
         itemBuilder: (uit, index) {
-          return Card(
-            elevation: 5,
-            margin: EdgeInsets.symmetric(
-              vertical: 8,
-              horizontal: 5,
-            ),
-            child: ListTile(
-              leading: Container(
-              height: 60, 
-              width: 60,
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColorLight,
-                shape: BoxShape.rectangle,
+          return Dismissible(
+            child: Card(
+              elevation: 5,
+              color: const Color(0xffdd377b),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              margin: EdgeInsets.symmetric(
+                vertical: 8,
+                horizontal: 4,
               ),
-              child: Padding(
-                padding: EdgeInsets.all(6),
-                  child: FittedBox(
-                  child: Text(items[index].quantity)
+              child: ListTile(
+
+                title: Text(
+                    items[index].title,
+                    style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                )
+                ),
+                subtitle: Text('Details',style: TextStyle(fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white)),
+
+                trailing: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(6),
+                    child: FittedBox(
+                        child: Text(items[index].quantity, style: TextStyle(color: const Color(0xffdd377b),fontWeight: FontWeight.w700),)
+                    ),
+                  ),
                 ),
               ),
-              ),
-              title: Text(
-                items[index].title, 
-                style: Theme.of(context).textTheme.headline6
-                ),
-            subtitle: Text('Details'),
             ),
+              key: UniqueKey(),
+              onDismissed: (Direction){items.remove(items[index]);
+              Scaffold.of(context).showSnackBar(SnackBar(content: Text("Item Removed from the Cart")));
+              },
           );
         },
         itemCount: items.length,
+
       )
     );
   }

@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Shopping Cart',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
+        primarySwatch: Colors.pink,
+        accentColor: Colors.white,
         fontFamily: 'Montserrat',
       ),
       home: MyHomePage(),
@@ -51,43 +51,57 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: () {},
         child: NewItem(_addNewItem),
         behavior: HitTestBehavior.opaque,
+
         );
     },);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
-      appBar: AppBar(
-        title: Text('smarTangle'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add), 
-            onPressed: () => _startAddNewItem(context),
-          ),
-        ],
-      ),
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              child: Text('SHOPPING CART',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 35,
-                )
+            SizedBox(height:130),
+            Text(
+              'Eric Brian Anil',
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 33,
+                color: const Color(0xff3a54e3),
+                letterSpacing: 2.744,
+                fontWeight: FontWeight.w700,
               ),
+              textAlign: TextAlign.center,
             ),
+            SizedBox(height:10),
+            Text(
+              'Shopping Cart',
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 24,
+                color: const Color(0xff3a54e3),
+                letterSpacing: 1.843,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height:10),
           ItemList(_userItems),
           ],
         ),
       ),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => _startAddNewItem(context),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: FloatingActionButton(
+          child: Icon(Icons.add, color: Colors.white),
+          backgroundColor: const Color(0xffdd377b),
+          onPressed: () => _startAddNewItem(context),
+        ),
       ),
     );
   }
